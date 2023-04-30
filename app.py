@@ -84,11 +84,11 @@ class MainWindow(QMainWindow):
  
     def update_title(self):
         title = self.browser.page().title()
-        self.setWindowTitle("% s - Catalyst" % title)
+        self.setWindowTitle("% s - Catalyst5" % title)
  
  
     def navigate_home(self):
-        self.browser.setUrl(QUrl("http://www.google.com"))
+        self.browser.setUrl(QUrl("https://duckduckgo.com"))
  
     def navigate_to_url(self):
         q = QUrl(self.urlbar.text())
@@ -104,7 +104,7 @@ class MainWindow(QMainWindow):
  
 app = QApplication(sys.argv)
  
-app.setApplicationName("Catalyst Web Browser")
+app.setApplicationName("Catalyst5")
  
 window = MainWindow()
  
