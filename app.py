@@ -7,8 +7,10 @@ from PyQt6.QtPrintSupport import *
 import os
 import sys
 import platform
+from importlib.metadata import version
 
 system = platform.system() + " " + platform.release()
+qwebengver = version('PyQt6-WebEngine')
 
 class MainWindow(QMainWindow):
  
@@ -22,6 +24,10 @@ class MainWindow(QMainWindow):
  
         self.browser.setUrl(QUrl("http://duckduckgo.com"))
  
+        oldAgent = self.browser.page().profile().httpUserAgent()
+        userAgent = oldAgent.replace("QtWebEngine/{}".format(qwebengver), "Catalyst/5.0.0")
+        self.browser.page().profile().setHttpUserAgent(userAgent)
+
         self.browser.urlChanged.connect(self.update_urlbar)
  
         self.browser.loadFinished.connect(self.update_title)
