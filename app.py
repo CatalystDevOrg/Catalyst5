@@ -6,6 +6,9 @@ from PyQt6.QtWebEngineWidgets import *
 from PyQt6.QtPrintSupport import *
 import os
 import sys
+import platform
+
+system = platform.system() + " " + platform.release()
 
 class MainWindow(QMainWindow):
  
@@ -13,7 +16,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(*args, **kwargs)
  
         def about_dialog():
-            QMessageBox.about(self, "Catalyst Web Browser", "Version v5.0.0 Development Preview")
+            QMessageBox.about(self, f"Catalyst5", "Version v5.0.0 Development Preview running on {}".format(system))
  
         self.browser = QWebEngineView()
  
