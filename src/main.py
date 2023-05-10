@@ -18,7 +18,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(*args, **kwargs)
  
         def about_dialog():
-            QMessageBox.about(self, f"Catalyst5", "Version v5.0.0 Development Preview 1 running on {}".format(system))
+            QMessageBox.about(self, f"Catalyst5", "Version v5.0.0 Alpha running on {}".format(system))
  
         self.browser = QWebEngineView()
  
