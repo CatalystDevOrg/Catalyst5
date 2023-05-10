@@ -1,7 +1,7 @@
 # Catalyst 5
 Catalyst web browser written in Python.
 # Installation
-Automatic installation is currently only availablef or Linux.
+Automatic installation is currently only available or Linux.
 ```
 sudo make install
 ```
