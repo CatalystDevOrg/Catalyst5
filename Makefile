@@ -1,6 +1,6 @@
 install:
 	@echo "Installing executable"
-	cp app.py /usr/bin/catalyst5
+	cp src/main.py /usr/bin/catalyst5
 	chmod +x /usr/bin/catalyst5
 	@echo "Installing desktop file and icon"
 	cp Catalyst.desktop /usr/share/applications/
