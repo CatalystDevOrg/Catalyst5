@@ -38,7 +38,7 @@ class MainWindow(QMainWindow):
   
         tabwip = QToolBar("TabNav")
    
-        self.addToolBar(tapwip)
+        self.addToolBar(tabwip)
  
         self.setStatusBar(self.status)
  
