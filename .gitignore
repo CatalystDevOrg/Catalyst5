@@ -1,2 +1,4 @@
-os
-src/__pycache__
+dist
+build
+*.spec
+__pycache__
