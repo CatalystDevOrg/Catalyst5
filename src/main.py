@@ -35,6 +35,10 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.browser)
  
         self.status = QStatusBar()
+  
+        tabwip = QToolBar("TabNav")
+   
+        self.addToolBar(tapwip)
  
         self.setStatusBar(self.status)
  
