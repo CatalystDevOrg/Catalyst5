@@ -2,11 +2,9 @@ on:
   push:
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: "ubuntu-latest"
     strategy:
       fail-fast: false
-      matrix:
-        os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
@@ -14,7 +12,7 @@ jobs:
         python-version: 3.7
     - run: sudo apt install -y libgssapi-krb5-2
     - run: pip install -r requirements.txt pyinstaller
-    - run: pyinstaller src/main.py
+    - run: pyinstaller --onefile src/main.py
     - uses: actions/upload-artifact@v2
       with:
         path: dist/*
