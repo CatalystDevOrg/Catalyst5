@@ -16,11 +16,15 @@ jobs:
     - run: mv dist/main catalyst
     - run: zip catalyst-browser catalyst
 
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
     - name: Create release
       id: create_release
       uses: actions/create-release@v1
       with:
-        tag_name: ${{ ${GITHUB_REF##*/} }}
+        tag_name: ${{ steps.get_version.outputs.VERSION }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
