@@ -15,19 +15,18 @@ jobs:
     - run: pyinstaller --onefile src/main.py
     - run: mv dist/main catalyst
     - run: zip catalyst-browser catalyst
-    - uses: mad9000/actions-find-and-replace-string@2
-      id: tagreplace
-      with:
-        source: ${{ github.ref }}
-        find: 'refs/'
-        replace: ''
+
+    - id: tag
+      uses: dawidd6/action-get-tag@v1
+
     - name: Create release
       id: create_release
       uses: actions/create-release@v1
       with:
-        tag_name: ${{ steps.tagreplace.outputs.value }}
+        tag_name: ${{ steps.tag.outputs.tag }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Upload release asset
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1
