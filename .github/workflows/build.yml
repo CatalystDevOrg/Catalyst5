@@ -16,15 +16,16 @@ jobs:
     - run: mv dist/main catalyst
     - run: zip catalyst-browser catalyst
 
-    - name: Get the version
-      id: get_version
-      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
-
+    - name: Make a tag for the release because GitHub Actions is bad at it's own job
+      id: tag_version
+      uses: mathieudutour/github-tag-action@v6.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Create release
       id: create_release
       uses: actions/create-release@v1
       with:
-        tag_name: ${{ steps.get_version.outputs.VERSION }}
+        tag_name: ${{ steps.tag_version.outputs.new_tag }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
