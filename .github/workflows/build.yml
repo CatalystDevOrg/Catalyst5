@@ -19,7 +19,8 @@ jobs:
     - name: Make a tag for the release because GitHub Actions is bad at it's own job
       id: tag_version
       uses: mathieudutour/github-tag-action@v6.1
-
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Create release
       id: create_release
       uses: actions/create-release@v1
