@@ -7,10 +7,9 @@ from PyQt6.QtPrintSupport import *
 import os
 import sys
 import platform
-from importlib.metadata import version
 
 system = platform.system() + " " + platform.release()
-qwebengver = version('PyQt6-WebEngine')
+qwebengver = "null"
 
 class MainWindow(QMainWindow):
  

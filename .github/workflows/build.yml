@@ -12,7 +12,7 @@ jobs:
       with:
         python-version: 3.7
     - run: pip install -r requirements.txt pyinstaller setuptools wheel importlib_metadata
-    - run: pyinstaller --onefile --copy-metadata importlib_metadata --hiddenimport importlib_metadata  src/main.py
+    - run: pyinstaller --onefile src/main.py
     - run: mv dist/main catalyst
     - run: zip catalyst-browser catalyst
 
