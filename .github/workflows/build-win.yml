@@ -1,0 +1,41 @@
+on:
+  push:
+jobs:
+  build:
+    permissions: write-all
+    runs-on: "windows-latest"
+    strategy:
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+    - run: pip install -r requirements.txt pyinstaller setuptools wheel importlib_metadata
+    - run: pyinstaller --onefile src/main.py
+    - run: move dist/main.exe catalyst.exe
+    - run: Compress-Archive -Path catalyst.exe -Destination catalyst-browser.zip
+
+    - name: Make a tag for the release because GitHub Actions is bad at it's own job
+      id: tag_version
+      uses: mathieudutour/github-tag-action@v6.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ steps.tag_version.outputs.new_tag }}-win
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload release asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} 
+        asset_path: ./catalyst-browser.zip
+        asset_name: catalyst-browser.zip
+        asset_content_type: application/zip
