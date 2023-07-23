@@ -1,5 +1,7 @@
 on:
   push:
+    tags:
+      - '*'
 jobs:
   build:
     permissions: write-all
@@ -15,17 +17,17 @@ jobs:
     - run: pyinstaller --onefile src/main.py
     - run: mv dist/main catalyst
     - run: zip catalyst-browser catalyst
+    
+    - uses: actions/checkout@v2
+    - name: Set output
+      id: vars
+      run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
 
-    - name: Make a tag for the release because GitHub Actions is bad at it's own job
-      id: tag_version
-      uses: mathieudutour/github-tag-action@v6.1
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Create release
       id: create_release
       uses: actions/create-release@v1
       with:
-        tag_name: ${{ steps.tag_version.outputs.new_tag }}
+        tag_name: ${{ steps.vars.outputs.tag }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
