@@ -22,8 +22,8 @@ jobs:
           pip install -r requirements.txt
       - name: Build for Linux
         run: |
-          pyi-makespec main.py --onefile --noconsole
-          pyinstaller --clean main.spec
+          /usr/bin/pyi-makespec main.py --onefile --noconsole
+          /usr/bin/pyinstaller --clean main.spec
           ls dist
       - name: bottom text
         uses: actions/upload-artifact@v3
