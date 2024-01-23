@@ -110,3 +110,5 @@ jobs:
         asset_name: "main"
         asset_content_type: application/zip
         upload_url: ${{ steps.release.outputs.upload_url }}
+
+        # run build action pls
