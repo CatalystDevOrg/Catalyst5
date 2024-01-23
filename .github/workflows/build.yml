@@ -45,6 +45,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          python -m pip install pyinstaller
       - name: Build for Windows
         run: |
           pyi-makespec src\main.py --onefile --noconsole
