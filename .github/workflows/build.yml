@@ -23,7 +23,7 @@ jobs:
           python -m pip install pyinstaller
       - name: Build for Linux
         run: |
-          pyi-makespec main.py --onefile --noconsole
+          pyi-makespec src/main.py --onefile --noconsole
           pyinstaller --clean main.spec
           ls dist
       - name: bottom text
@@ -47,7 +47,7 @@ jobs:
           pip install -r requirements.txt
       - name: Build for Windows
         run: |
-          pyi-makespec main.py --onefile --noconsole
+          pyi-makespec src\main.py --onefile --noconsole
           pyinstaller --clean main.spec
       - name: Save artifact
         uses: actions/upload-artifact@v3
