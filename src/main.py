@@ -26,7 +26,7 @@ class MainWindow(QMainWindow):
         #userAgent = oldAgent.replace("QtWebEngine/{}".format(qwebengver), "Catalyst/5.0.0")
 
         # Browser Page Load Handlers
-        self.browser.page().profile().setHttpUserAgent(userAgent)
+        # self.browser.page().profile().setHttpUserAgent(userAgent)
         self.browser.urlChanged.connect(self.update_urlbar)
         self.browser.loadFinished.connect(self.update_title)
         self.setCentralWidget(self.browser)
