@@ -106,7 +106,7 @@ class MainWindow(QMainWindow):
         self.urlbar.setCursorPosition(0)
  
     # Displays About Dialog
-    def about_dialog():
+    def about_dialog(self):
         QMessageBox.about(self, f"Catalyst5", "Version v5.0.0 Alpha running on {}".format(system))
 
 # Prepare and Display Application
