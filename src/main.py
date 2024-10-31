@@ -64,7 +64,7 @@ class MainWindow(QMainWindow):
         # About Button
         about_btn = QAction("About", self)
         about_btn.setStatusTip("AboutDialog")
-        about_btn.triggered.connect(about_dialog)
+        about_btn.triggered.connect(self.about_dialog)
         navtb.addAction(about_btn)
 
         # URL Bar
