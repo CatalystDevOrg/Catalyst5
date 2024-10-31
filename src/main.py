@@ -79,7 +79,8 @@ class MainWindow(QMainWindow):
         stop_btn.triggered.connect(self.browser.stop)
         navtb.addAction(stop_btn)
 
-        # Display Window
+        # Display Window and Set Size
+        self.resize(1200, 800)
         self.show()
  
     # Functions
